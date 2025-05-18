@@ -8,17 +8,17 @@ class Traje:
     def __str__(self):
         return f"Modelo: {self.modelo}, Película: {self.pelicula}, Estado: {self.estado}"
 
-pila_trajes = []
+pila_trajes = Stack()
 
 #punto d, los trajes fueron cargados manualmente a la pila respetando la consigna.
-pila_trajes.append(Traje("Mark XLIV", "Avengers: Age of Ultron", "Dañado"))
-pila_trajes.append(Traje("Mark L", "Avengers: Infinity War", "Destruido"))
-pila_trajes.append(Traje("Mark LXXXV", "Avengers: Endgame", "Dañado"))
-pila_trajes.append(Traje("Mark XLVI", "Capitan America: Civil War", "Impecable"))
-pila_trajes.append(Traje("Mark XLVII", "Spider-Man: Homecoming", "Dañado"))
-pila_trajes.append(Traje("Mark XLVIII", "Avengers: Infinity War", "Dañado"))
-pila_trajes.append(Traje("Mark LXXX", "Avengers: Endgame", "Dañado"))
-pila_trajes.append(Traje("Mark XLIX", "Avengers: Age of Ultron", "Destruido"))
+pila_trajes.push(Traje("Mark XLIV", "Avengers: Age of Ultron", "Dañado"))
+pila_trajes.push(Traje("Mark L", "Avengers: Infinity War", "Destruido"))
+pila_trajes.push(Traje("Mark LXXXV", "Avengers: Endgame", "Dañado"))
+pila_trajes.push(Traje("Mark XLVI", "Capitan America: Civil War", "Impecable"))
+pila_trajes.push(Traje("Mark XLVII", "Spider-Man: Homecoming", "Dañado"))
+pila_trajes.push(Traje("Mark XLVIII", "Avengers: Infinity War", "Dañado"))
+pila_trajes.push(Traje("Mark LXXX", "Avengers: Endgame", "Dañado"))
+pila_trajes.push(Traje("Mark XLIX", "Avengers: Age of Ultron", "Destruido"))
 
 #Punto a
 #Esta funcion sirve para comprobar si el traje Mark XLIV forma parte de la pila, y retorna un mensaje en caso verdadero mostrando 
@@ -26,7 +26,7 @@ pila_trajes.append(Traje("Mark XLIX", "Avengers: Age of Ultron", "Destruido"))
 def buscarTraje(buscado):
     copiaPila = pila_trajes.copy()
     pelicula = []
-    while copiaPila:
+    while copiaPila.size() > 0:
         trajeActual = copiaPila.pop()
         if trajeActual.modelo == buscado:
             pelicula.append(trajeActual.pelicula)
@@ -42,7 +42,7 @@ def trajesDañados():
     trajes_dañados = []
     copiaPila = pila_trajes.copy() #apunte: .copy() sirve para crear una copia de la pila original sin modificar la misma.
 
-    while copiaPila:
+    while copiaPila.size() > 0:
         traje_actual = copiaPila.pop()
         if traje_actual.estado == "Dañado":
             trajes_dañados.append(traje_actual.modelo)
@@ -59,7 +59,7 @@ def eliminarDestruidos():
     trajesDestruidos = []
     trajesNoDestruidos = []
     
-    while pila_trajes:
+    while pila_trajes.size() > 0:
         trajeActual = pila_trajes.pop()
         if trajeActual.estado == "Destruido":
             trajesDestruidos.append(trajeActual)
@@ -70,20 +70,20 @@ def eliminarDestruidos():
         print(f"Los trajes destruidos son: {[traje.modelo for traje in trajesDestruidos]}")
 
     while trajesNoDestruidos:
-        pila_trajes.append(trajesNoDestruidos.pop())
+        pila_trajes.push(trajesNoDestruidos.pop())
 
 #Punto e 
 #Esta funcion sirve para agregar un traje a la pila, antes comprobando si existe en la misma.
 def agregarTraje(modelo, pelicula, estado):
     copiaPila = pila_trajes.copy() 
-    while copiaPila:
+    while copiaPila.size() > 0:
         trajeActual = copiaPila.pop()
         if (trajeActual.modelo == modelo) and (trajeActual.pelicula == pelicula):
             print(f"El traje {trajeActual.modelo} que sale en la pelicula {trajeActual.pelicula} ya existe en la pila.")
             return #apunte: return corta la funcion y no sucede lo siguiente.
         
     nuevo_traje = Traje(modelo, pelicula, estado)
-    pila_trajes.append(nuevo_traje)
+    pila_trajes.push(nuevo_traje)
     print(f"El traje {modelo} ha sido agregado a la pila.")
 
 #Esta funcion sirve para mostrar los trajes que hay en la pila.
@@ -91,7 +91,7 @@ def mostrarTrajes():
     if pila_trajes: #apunte: comprueba que la pila contiene elementos.
         print("Trajes actuales en la pila:")
         copiaPila = pila_trajes.copy()
-        while copiaPila:
+        while copiaPila.size() > 0:
             trajeActual = copiaPila.pop()
             print(trajeActual)
     else:
@@ -101,7 +101,7 @@ def mostrarTrajes():
 def trajesUsados(buscado1,buscado2):
     trajes_usados = []
     copiaPila = pila_trajes.copy()
-    while copiaPila:
+    while copiaPila.size() > 0:
         trajeActual = copiaPila.pop()
         if trajeActual.pelicula == buscado1 or trajeActual.pelicula == buscado2:	
             trajes_usados.append(trajeActual.modelo) 
