@@ -21,12 +21,15 @@ pila_personajes.push(Personaje("Groot", 4))
 pila_personajes.push(Personaje("Spider Man", 4))
 pila_personajes.push(Personaje("Black Panther", 2))
 
+#Muestra la pila de personajes
 def mostrarPila():
     copiaPila = pila_personajes.copy()
     while copiaPila.size() > 0:
         personajeActual = copiaPila.pop()
         print(personajeActual)
 
+#Punto a
+#Muestra la posición de un personaje buscado
 def posicionPersonaje(buscado):
     personaje_buscado = []
     posicion_buscado = []
@@ -43,6 +46,8 @@ def posicionPersonaje(buscado):
     else:
         print(f"El personaje {buscado} no se encuentra en la pila.")
 
+#Punto b
+#Muestra los personajes que aparecen en más de 5 películas y su cantidad de películas
 def personajesConMasPeliculas():
     personajes = []
     copiaPila = pila_personajes.copy()
@@ -57,6 +62,8 @@ def personajesConMasPeliculas():
     else:
         print("No hay personajes que aparezcan en 5 o más películas.")
 
+#Punto c
+#Muestra la cantidad de películas en las que aparece un personaje buscado
 def cantPeliculasPersonajeBuscado(buscado):
     
     cantidad_peliculas = []
@@ -71,6 +78,8 @@ def cantPeliculasPersonajeBuscado(buscado):
     else:
         print(f"El personaje {buscado} no se encuentra en la pila.")
 
+#Punto d
+#Muestra los personajes que comienzan con una letra buscada
 def mostrarPersonajesConLetra(buscado):
     personajes = []
     copiaPila = pila_personajes.copy()
@@ -83,6 +92,8 @@ def mostrarPersonajesConLetra(buscado):
         print(f"Los personajes que comienzan con la letra {buscado} son: {personajes}")
     else:
         print(f"No hay personajes que comiencen con la letra {buscado}.")
+
+#llamado a las funciones
 
 mostrarPila()
 print("-----------------------------------")
