@@ -23,6 +23,8 @@ cola.arrive(Notificacion(time(15,15), "Telegram", "Actualizacion disponible"))
 cola.arrive(Notificacion(time(16,30), "Snapchat", "Hey!"))
 cola.arrive(Notificacion(time(19,33), "TikTok", "Sam Winchester ha publicado un video"))
 
+#Punto a
+#Esta funcion sirve para eliminar las notificaciones de una app en particular.
 def eliminarNoti(app):
     colaTemporal = Queue()
     while not cola.qEmpty():
@@ -33,13 +35,18 @@ def eliminarNoti(app):
     while not colaTemporal.qEmpty():
         cola.arrive(colaTemporal.attention())
 
+#Punto b
+#Esta funcion sirve para mostrar las notificaciones de Twitter que contienen la palabra "Python" en su mensaje.
 def mostrarNoti():
     copiaCola = cola.qCopy()
     while not copiaCola.qEmpty():
         notif = copiaCola.attention()
-        if notif.app == "Twitter" and notif.mensaje.startswith("Python"):
+        if notif.app == "Twitter" and notif.mensaje.startswith("Python"): #apunte: startswith() sirve para buscar si la cadena de texto comienza con lo que le pasamos como argumento.
             print(notif)
 
+#Punto c
+#Esta funcion sirve para mostrar las notificaciones que se encuentran en un rango horario determinado.
+#La funcion se podría adaptar a ingresar el rango horario desde la entrada de la misma, pero elegí hacerlo con los valores que solicita el punto del ejercicio para faciliarlo un poco.
 def notifSegunHorario():
     copiaCola = cola.qCopy()
     stackNotificaciones = Stack()
