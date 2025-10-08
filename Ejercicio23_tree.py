@@ -1,5 +1,3 @@
-# n. muestre las criaturas capturadas por Heracles.
-
 from BinaryTree import BinaryTree
 
 DATA = [
@@ -281,4 +279,5 @@ print("-------------------------")
 print()
 
 print("Árbol completo después de todas las modificaciones:")
+
 mostrar_arbol_limpio(arbol_criaturas)
