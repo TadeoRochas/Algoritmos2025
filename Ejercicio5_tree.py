@@ -24,7 +24,7 @@ def superhero_starts_with(value):
     def __superhero_starts_with(root):
         if root is not None:
             __superhero_starts_with(root.left)
-            if root.value.startswith(value):
+            if root.value.startswith(value) and not root.other_values: 
                 print(root.value)
             __superhero_starts_with(root.right)
 
