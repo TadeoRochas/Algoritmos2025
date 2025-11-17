@@ -63,7 +63,23 @@ class HeapMax:
     def attention(self) -> Any:
         value = self.remove()
         return value
-
+    
+    #Por buena practica, como agrego un search en HeapMin, lo agrego tambien en HeapMax
+    def search(self, value):
+        """Busca un valor en los elementos del heap"""
+        for index, element in enumerate(self.elements):
+            if element[1][0] == value:  # element[1][0] es el nombre del nodo
+                return index
+        return None
+    
+    def change_priority(self, index, new_priority):
+        if index < len(self.elements):
+            previous_priority = self.elements[index][0]
+            self.elements[index][0] = new_priority
+            if new_priority > previous_priority:
+                self.sink(index)
+            elif new_priority < previous_priority:
+                self.float(index)
 
 class HeapMin:
 
@@ -128,6 +144,23 @@ class HeapMin:
     def attention(self) -> Any:
         value = self.remove()
         return value
+    
+    # Busca un valor en los elementos del heap, es necesario para el ejercicio 5 de la práctica donde usamos Dijkstra
+    def search(self, value):
+        """Busca un valor en los elementos del heap"""
+        for index, element in enumerate(self.elements):
+            if element[1][0] == value:  # element[1][0] es el nombre del nodo
+                return index
+        return None
+    
+    def change_priority(self, index, new_priority):
+        if index < len(self.elements):
+            previous_priority = self.elements[index][0]
+            self.elements[index][0] = new_priority
+            if new_priority > previous_priority:
+                self.sink(index)
+            elif new_priority < previous_priority:
+                self.float(index)
 
 # priority_queue = HeapMin()
 
